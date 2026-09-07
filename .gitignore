@@ -1,0 +1,29 @@
+# Credenciales de red: nunca entran al repositorio.
+firmware/redes.h
+
+# Datos fisiológicos: las sesiones son registros de una persona real.
+analisis/datos/
+*.csv
+*.json
+informe_*.html
+sesiones/
+
+# Compilación de Android
+app-android/build/
+app-android/app/build/
+app-android/.gradle/
+app-android/local.properties
+app-android/herramientas/
+*.apk
+*.aab
+*.keystore
+*.jks
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+.DS_Store
+Thumbs.db
