@@ -1,0 +1,22 @@
+/* ============================================================================
+ *  rESPira · credenciales de red
+ * ============================================================================
+ *  Copia este fichero como  redes.h  y pon tus datos. redes.h esta en el
+ *  .gitignore a proposito: nunca debe entrar al repositorio.
+ *
+ *      cp redes.h.ejemplo redes.h
+ * ========================================================================== */
+#pragma once
+
+// Punto de acceso que levanta el ESP32 cuando no encuentra ninguna red conocida.
+// Desde el se abre el portal para elegir o escribir una red a mano.
+const char* AP_SSID  = "Respira-ESP32";
+const char* AP_PASS  = "cambia-esta-clave";   // minimo 8 caracteres
+const char* HOSTNAME = "respira";             // -> http://respira.local
+
+// Redes que el ESP32 prueba solo al arrancar, sin pasar por el portal.
+// Anade las habituales. Formato: { "nombre de la red", "contrasena" }
+#define REDES_CONOCIDAS { \
+  { "MI_RED",      "mi-contrasena" }, \
+  { "MI_RED_5GHZ", "mi-contrasena" }, \
+}
