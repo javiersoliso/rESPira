@@ -62,6 +62,10 @@ public class MainActivity extends Activity {
     private static final String INICIO = "file:///android_asset/app/index.html";
     private static final String AP_URL = "http://192.168.4.1";
     private static final String SSID   = "Respira-ESP32";
+    // Clave del punto de acceso que levanta el sensor cuando no encuentra
+    // ninguna red conocida. TIENE QUE COINCIDIR con AP_PASS de firmware/redes.h.
+    // No es un secreto de servidor: protege una red local efimera y cualquiera
+    // con el APK puede extraerla. Aun asi, cambiala junto con la del firmware.
     private static final String PASS   = "respira1234";
     private static final String MDNS_NOMBRE = "respira";
 

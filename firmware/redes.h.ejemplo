@@ -11,7 +11,9 @@
 // Punto de acceso que levanta el ESP32 cuando no encuentra ninguna red conocida.
 // Desde el se abre el portal para elegir o escribir una red a mano.
 const char* AP_SSID  = "Respira-ESP32";
-const char* AP_PASS  = "cambia-esta-clave";   // minimo 8 caracteres
+const char* AP_PASS  = "respira1234";         // minimo 8 caracteres
+                                              // Si la cambias, cambia tambien
+                                              // PASS en MainActivity.java.
 const char* HOSTNAME = "respira";             // -> http://respira.local
 
 // Redes que el ESP32 prueba solo al arrancar, sin pasar por el portal.
