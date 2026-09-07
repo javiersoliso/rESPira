@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<title>rESPira</title>
+<link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+
+<!-- ================================================================ INICIO -->
+<section class="vista on" id="v-inicio">
+  <div class="top">
+    <span class="marca">rESPIRA</span>
+    <span class="der"><button data-ir="v-ajustes" aria-label="Ajustes">⚙</button></span>
+  </div>
+  <div class="cuerpo holgado">
+    <div class="fila" style="gap:8px">
+      <span class="chip ch-neu" id="i-estado">buscando el sensor…</span>
+      <span class="dim2" id="i-detalle"></span>
+    </div>
+
+    <div class="aro-caja">
+      <div class="aro">
+        <div class="halo" id="i-halo"></div>
+        <div class="dentro">
+          <div class="cifra c-xl" id="i-bpm" style="color:var(--pulso-luz)">--</div>
+          <div class="rot" style="margin-top:8px">latidos por minuto</div>
+        </div>
+      </div>
+      <p class="dim" id="i-frase" style="margin-top:12px;text-align:center">Conectando…</p>
+    </div>
+
+    <button class="btn" data-ir="v-sesiones">Empezar una sesión</button>
+
+    <div>
+      <div class="fila entre" style="margin-bottom:10px">
+        <span class="rot">Tus últimas sesiones</span>
+        <button class="atras" data-ir="v-historial" style="font-size:12.5px">ver todas ›</button>
+      </div>
+      <div id="i-ultimas" style="display:flex;flex-direction:column;gap:9px"></div>
+    </div>
+  </div>
+  <nav class="nav" data-nav="v-inicio"></nav>
+</section>
+
+<!-- ============================================================== SESIONES -->
+<section class="vista" id="v-sesiones">
+  <div class="top"><button class="atras" data-ir="v-inicio">‹ Inicio</button></div>
+  <div class="cuerpo">
+    <div>
+      <h2 class="tit">Sesiones</h2>
+      <p class="dim2">Elige qué quieres hacer. Cada una te guía y termina con su informe.</p>
+    </div>
+    <div class="segs" id="s-familias"></div>
+    <div id="s-lista" style="display:flex;flex-direction:column;gap:9px"></div>
+  </div>
+  <nav class="nav" data-nav="v-sesiones"></nav>
+</section>
+
+<!-- ============================================================== PRÁCTICA -->
+<section class="vista" id="v-practica">
+  <div class="top"><button class="atras" data-ir="v-sesiones">‹ Sesiones</button></div>
+  <div class="cuerpo holgado" id="p-cuerpo"></div>
+</section>
+
+<!-- ================================================================ GUIADA -->
+<section class="vista" id="v-guiada">
+  <div class="top">
+    <button class="atras" id="g-salir">‹</button>
+    <span class="der"><span class="dim2" id="g-ronda"></span></span>
+  </div>
+  <div class="cuerpo holgado" style="justify-content:center;text-align:center">
+    <div class="fila" style="justify-content:center;gap:20px;align-items:center">
+      <div class="tanque" id="g-tanque" style="display:none">
+        <i style="height:0%"></i>
+        <span class="marca" style="top:6px">lleno</span>
+        <span class="marca" style="bottom:6px">vacío</span>
+      </div>
+      <div class="guia" id="g-guia">
+        <div class="relleno"></div><div class="anillo"></div>
+        <div class="txt">
+          <div id="g-fase" style="font-size:19px;font-weight:300;letter-spacing:.04em;color:var(--tx2)">listo</div>
+          <div class="cifra" id="g-cuenta" style="font-size:38px;margin-top:7px">·</div>
+        </div>
+      </div>
+    </div>
+    <div class="fila entre" style="padding:0 4px">
+      <div style="text-align:left">
+        <div class="cifra c-m" id="g-bpm" style="color:var(--pulso-luz)">--</div>
+        <div class="rot" style="margin-top:5px">pulso</div>
+      </div>
+      <div style="text-align:center">
+        <div class="cifra c-m" id="g-tiempo">0:00</div>
+        <div class="rot" style="margin-top:5px">transcurrido</div>
+      </div>
+      <div style="text-align:right">
+        <div class="cifra c-m" id="g-extra" style="color:var(--rito-luz)">--</div>
+        <div class="rot" style="margin-top:5px" id="g-extraRot">coherencia</div>
+      </div>
+    </div>
+    <p class="dim2" id="g-pista">Deja que el aro te lleve. Si te pierdes, vuelve sin más.</p>
+    <div style="margin-top:auto"><button class="btn sec" id="g-terminar">Terminar</button></div>
+  </div>
+</section>
+
+<!-- =========================================================== ANALIZANDO -->
+<section class="vista" id="v-analizando">
+  <div class="cuerpo holgado" style="justify-content:center;text-align:center;padding-top:70px">
+    <div class="aro" style="margin:0 auto;width:130px;height:130px">
+      <div class="halo late" style="--ibi:1.4s"></div>
+      <div class="dentro" style="font-size:30px;color:var(--pulso-luz)">◍</div>
+    </div>
+    <div>
+      <h2 class="tit">Preparando tu informe</h2>
+      <p class="dim2">Tómate un momento. Vale la pena hacerlo bien.</p>
+    </div>
+    <div style="text-align:left;padding:0 8px" id="a-pasos"></div>
+  </div>
+</section>
+
+<!-- =============================================================== INFORME -->
+<section class="vista" id="v-informe">
+  <div class="top">
+    <button class="atras" data-ir="v-inicio">‹ Inicio</button>
+    <span class="der"><button id="r-exportar" aria-label="Guardar">↓</button></span>
+  </div>
+  <div class="cuerpo" id="r-cuerpo"></div>
+</section>
+
+<!-- ============================================================= HISTORIAL -->
+<section class="vista" id="v-historial">
+  <div class="top"><button class="atras" data-ir="v-inicio">‹ Inicio</button></div>
+  <div class="cuerpo">
+    <h2 class="tit">Historial</h2>
+    <div class="tar" id="h-resumen"></div>
+    <div id="h-lista" style="display:flex;flex-direction:column;gap:9px"></div>
+  </div>
+  <nav class="nav" data-nav="v-historial"></nav>
+</section>
+
+<!-- =============================================================== AJUSTES -->
+<section class="vista" id="v-ajustes">
+  <div class="top"><button class="atras" data-ir="v-inicio">‹ Inicio</button></div>
+  <div class="cuerpo">
+    <h2 class="tit">Ajustes</h2>
+
+    <div style="display:flex;flex-direction:column;gap:9px">
+      <button class="item" id="aj-sensor">
+        <span class="glifo" style="color:var(--aire-luz)">◈</span>
+        <span style="flex:1"><h4>Sensor y red</h4><span class="meta" id="aj-red">—</span></span>
+      </button>
+      <button class="item" data-ir="v-calibrar">
+        <span class="glifo" style="color:var(--aire-luz)">◎</span>
+        <span style="flex:1"><h4>Calibrar el cinturón</h4>
+        <span class="meta" id="aj-cal">necesario para las sesiones de exhalación</span></span>
+      </button>
+      <button class="item" data-ir="v-sonido">
+        <span class="glifo" style="color:var(--rito-luz)">♪</span>
+        <span style="flex:1"><h4>Sonido</h4><span class="meta" id="aj-voz">—</span></span>
+      </button>
+      <button class="item" data-ir="v-perfil">
+        <span class="glifo" style="color:var(--pulso-luz)">◍</span>
+        <span style="flex:1"><h4>Lo que la app ha aprendido de ti</h4>
+        <span class="meta" id="aj-perfil">—</span></span>
+      </button>
+      <button class="item" data-ir="v-datos">
+        <span class="glifo" style="color:var(--aire-luz)">↓</span>
+        <span style="flex:1"><h4>Mis datos</h4>
+        <span class="meta">descargar todas las sesiones · borrar</span></span>
+      </button>
+      <button class="item" data-ir="v-diagnostico">
+        <span class="glifo" style="color:var(--tx2)">⚗</span>
+        <span style="flex:1"><h4>Diagnóstico</h4>
+        <span class="meta">latencia, señal cruda, registro del sensor</span></span>
+      </button>
+    </div>
+
+    <div class="tar hueco">
+      <div class="rot" style="margin-bottom:8px">Tu ritmo de resonancia</div>
+      <p class="dim2" id="aj-resonancia">Sin medir. La coherencia usa 5,5 rpm de serie.</p>
+    </div>
+    <div class="tar hueco">
+      <div class="rot" style="margin-bottom:8px">Tu récord de exhalación</div>
+      <p class="dim2" id="aj-record">Sin marca todavía.</p>
+    </div>
+
+    <div class="aviso">
+      <span>⚠</span>
+      <span>rESPira es un instrumento experimental, no un aparato médico. No sirve para
+      diagnosticar nada.</span>
+    </div>
+  </div>
+  <nav class="nav" data-nav="v-ajustes"></nav>
+</section>
+
+<!-- ================================================================ SONIDO -->
+<section class="vista" id="v-sonido">
+  <div class="top"><button class="atras" data-ir="v-ajustes">‹ Ajustes</button></div>
+  <div class="cuerpo">
+    <h2 class="tit">Sonido</h2>
+    <p class="dim2">Con guía sonora puedes hacer la sesión con los ojos cerrados.
+      Ponte los auriculares: la textura se mueve por el espacio.</p>
+    <div class="rot">la voz</div>
+    <div id="so-voces" style="display:flex;flex-direction:column;gap:9px"></div>
+    <div class="tar">
+      <div class="rot" style="margin-bottom:12px">capas</div>
+      <div id="so-capas" style="display:flex;flex-direction:column;gap:12px"></div>
+    </div>
+    <button class="btn sec" id="so-probar">Escuchar la campana</button>
+  </div>
+</section>
+
+<!-- ============================================================== CALIBRAR -->
+<section class="vista" id="v-calibrar">
+  <div class="top"><button class="atras" data-ir="v-ajustes">‹ Ajustes</button></div>
+  <div class="cuerpo holgado" style="text-align:center">
+    <div style="text-align:left">
+      <h2 class="tit">Calibrar el cinturón</h2>
+      <p class="dim2">Sin esto, las sesiones de exhalación larga no pueden medir nada:
+      el cinturón tiene que saber cuál es tu pulmón lleno y cuál tu pulmón vacío.</p>
+    </div>
+    <div class="fila" style="justify-content:center;gap:22px">
+      <div class="tanque" style="height:220px"><i id="cal-nivel" style="height:0%"></i></div>
+      <div style="text-align:left">
+        <div class="cifra c-l" id="cal-crudo">--</div>
+        <div class="rot" style="margin-top:6px">lectura</div>
+        <p class="dim2" id="cal-rango" style="margin-top:14px">rango: —</p>
+      </div>
+    </div>
+    <p class="dim" id="cal-paso">Llena el pecho todo lo que puedas y toca «Estoy lleno».</p>
+    <div style="display:flex;flex-direction:column;gap:9px;margin-top:auto">
+      <button class="btn" id="cal-lleno">Estoy lleno</button>
+      <button class="btn sec" id="cal-vacio">Estoy vacío</button>
+      <button class="btn fant" id="cal-borrar">Empezar de nuevo</button>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================ PERFIL -->
+<section class="vista" id="v-perfil">
+  <div class="top"><button class="atras" data-ir="v-ajustes">‹ Ajustes</button></div>
+  <div class="cuerpo">
+    <div>
+      <h2 class="tit">Lo que ha aprendido de ti</h2>
+      <p class="dim2">Cada sesión <b>con el cinturón puesto</b> deja parejas de datos: lo que
+      hizo tu corazón y lo que hacía tu pecho a la vez. Con suficientes, la app aprende a
+      deducir la segunda parte sin la primera — y el cinturón deja de hacer falta.</p>
+    </div>
+    <div class="tar" id="pf-progreso"></div>
+    <div class="tar" id="pf-que"></div>
+    <div class="tar" id="pf-zonas"></div>
+    <button class="btn fant" id="pf-olvidar">Olvidar todo lo aprendido</button>
+  </div>
+</section>
+
+<!-- ================================================================= DATOS -->
+<section class="vista" id="v-datos">
+  <div class="top"><button class="atras" data-ir="v-ajustes">‹ Ajustes</button></div>
+  <div class="cuerpo">
+    <div>
+      <h2 class="tit">Mis datos</h2>
+      <p class="dim2">Todo lo que grabas se queda en el teléfono, entero y en crudo. Nada sale
+      de aquí salvo que tú lo exportes.</p>
+    </div>
+    <div class="tar" id="da-resumen"></div>
+    <div style="display:flex;flex-direction:column;gap:9px">
+      <button class="btn" id="da-todo">Descargar TODAS las sesiones</button>
+      <button class="btn sec" id="da-parejas">Descargar lo aprendido (parejas)</button>
+      <button class="btn sec" id="da-latidos">Descargar solo los latidos</button>
+    </div>
+    <p class="dim2">Van a la carpeta <b>Descargas</b> del teléfono, en CSV. La señal cruda
+    completa pesa: una sesión de 15 min ronda los 3 MB.</p>
+    <button class="btn fant" id="da-borrar">Borrar todas las sesiones</button>
+  </div>
+</section>
+
+<!-- =========================================================== DIAGNÓSTICO -->
+<section class="vista" id="v-diagnostico">
+  <div class="top"><button class="atras" data-ir="v-ajustes">‹ Ajustes</button></div>
+  <div class="cuerpo">
+    <h2 class="tit">Diagnóstico</h2>
+    <div class="tar">
+      <div class="rot" style="margin-bottom:10px">Enlace</div>
+      <table class="tabla" id="d-enlace"></table>
+    </div>
+    <div class="tar">
+      <div class="rot" style="margin-bottom:10px">Señal</div>
+      <table class="tabla" id="d-senal"></table>
+    </div>
+    <div class="tar">
+      <div class="rot" style="margin-bottom:10px">Configuración leída del chip</div>
+      <p class="mono" id="d-cfg">—</p>
+    </div>
+    <button class="btn sec" id="d-noche">Descargar la caja negra del sensor</button>
+    <button class="btn fant" id="d-rescate">Exportar TODAS las sesiones a Descargas</button>
+  </div>
+</section>
+
+<div id="brindis"></div>
+
+<script src="motor.js"></script>
+<script src="informe.js"></script>
+<script src="voces.js"></script>
+<script src="sonido.js"></script>
+<script src="practicas.js"></script>
+<script src="almacen.js"></script>
+<script src="perfil.js"></script>
+<script src="enlace.js"></script>
+<script src="guia.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

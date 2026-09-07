@@ -1,0 +1,18 @@
+// AGP 7.4.2 + Gradle 7.6: funcionan con el JDK 16 que ya tienes instalado.
+// (Las versiones 8.x de AGP exigirian JDK 17 y otra descarga mas.)
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:7.4.2'
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}

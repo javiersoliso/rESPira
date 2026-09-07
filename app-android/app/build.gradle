@@ -1,0 +1,30 @@
+plugins { id 'com.android.application' }
+
+// Sin AndroidX ni ninguna dependencia externa: solo WebView y el tema del
+// sistema. Eso hace que la compilacion sea minima y no descargue medio internet.
+android {
+    namespace 'com.respira.movil'
+    compileSdk 33
+
+    defaultConfig {
+        applicationId "com.respira.movil"
+        minSdk 29                 // Android 10: hace falta para WifiNetworkSpecifier
+        targetSdk 33
+        versionCode 10
+        versionName "10.0"  // la app entera vive aqui; el ESP32 solo mide
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            // Firmado con la clave de depuracion para poder instalarlo sin mas.
+            // Es una app personal en una red local; no va a ninguna tienda.
+            signingConfig signingConfigs.debug
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+}

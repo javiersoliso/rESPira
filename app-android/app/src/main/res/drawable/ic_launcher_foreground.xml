@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Lienzo de 108x108 dp; la zona segura del icono adaptativo es el centro 72x72.
+     Dibujamos un trazo de pulso dentro de esa zona. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <path
+        android:pathData="M26,54 L38,54 L43,42 L50,68 L57,48 L62,58 L70,58 L82,58"
+        android:strokeColor="#5FD3A6"
+        android:strokeWidth="5"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+</vector>

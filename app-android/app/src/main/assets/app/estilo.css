@@ -1,0 +1,149 @@
+/* ============================================================================
+ *  rESPira v10 · sistema visual
+ * ============================================================================
+ *  Un instrumento tranquilo. Cifras grandes y FINAS (peso 200): un número
+ *  grande y delgado se lee como instrumento; uno grande y gordo, como app de
+ *  gimnasio. Un dato por pantalla, y todo lo técnico detrás de Ajustes.
+ *
+ *  La paleta está validada: sobre el fondo #070b0f los tres colores de datos
+ *  se distinguen entre sí en todos los pares, incluida visión con deficiencia
+ *  de color.  aqua = pulso · azul = aire/pulmón · oro = tradición/vela
+ * ========================================================================== */
+:root{
+  --bg:#070b0f; --s1:#0e151d; --s2:#131c26; --s3:#1b2733;
+  --line:#1e2b39; --line2:#2b3d4e;
+  --tx:#e6eef5; --tx2:#9cb0c2; --tx3:#5f7488;
+  --pulso:#199e70; --pulso-luz:#3fd39c;
+  --aire:#3987e5;  --aire-luz:#6fb2f5;
+  --rito:#c98500;  --rito-luz:#f0b93c;
+  --mal:#e66767; --ojo:#e0a34a;
+  --f:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --r:16px;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--tx);font:15px/1.5 var(--f);
+  -webkit-font-smoothing:antialiased;overscroll-behavior:none;
+  padding-bottom:env(safe-area-inset-bottom)}
+button,input,select{font:inherit;color:inherit}
+button{background:none;border:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--pulso-luz);outline-offset:2px}
+
+/* ------------------------------------------------------------ pantallas -- */
+.vista{display:none;flex-direction:column;min-height:100vh;min-height:100dvh}
+.vista.on{display:flex}
+.top{display:flex;align-items:center;gap:10px;padding:calc(14px + env(safe-area-inset-top)) 18px 12px;
+  position:sticky;top:0;background:linear-gradient(var(--bg) 74%,transparent);z-index:20}
+.marca{font-size:11px;letter-spacing:.24em;font-weight:650;color:var(--pulso-luz)}
+.top .der{margin-left:auto;display:flex;gap:16px;color:var(--tx3);font-size:18px}
+.top .der button:active{color:var(--tx2)}
+.atras{color:var(--tx2);font-size:14.5px;display:flex;align-items:center;gap:6px}
+.cuerpo{padding:4px 18px 24px;display:flex;flex-direction:column;gap:16px;flex:1}
+.cuerpo.holgado{gap:26px}
+h2.tit{font-size:22px;font-weight:300;letter-spacing:-.01em}
+
+/* ------------------------------------------------------------ tipografía -- */
+.rot{font-size:10px;letter-spacing:.17em;text-transform:uppercase;color:var(--tx3);font-weight:650}
+.cifra{font-weight:200;letter-spacing:-.03em;font-variant-numeric:tabular-nums;line-height:1}
+.c-xl{font-size:82px} .c-l{font-size:46px} .c-m{font-size:30px}
+.uni{font-size:13px;color:var(--tx3);font-weight:400;letter-spacing:0}
+.dim{color:var(--tx2);font-size:13.5px}
+.dim2{color:var(--tx3);font-size:12.5px;line-height:1.45}
+.vered{font-size:17px;line-height:1.45;font-weight:300;text-wrap:balance}
+
+/* --------------------------------------------------------------- piezas -- */
+.tar{background:var(--s1);border:1px solid var(--line);border-radius:var(--r);padding:15px}
+.tar.hueco{background:none;border-style:dashed}
+.fila{display:flex;align-items:center;gap:12px}
+.entre{justify-content:space-between}
+.btn{display:block;width:100%;text-align:center;background:var(--pulso);color:#03150d;
+  border-radius:13px;padding:15px;font-weight:600;letter-spacing:.01em}
+.btn.sec{background:var(--s3);color:var(--tx);border:1px solid var(--line2);font-weight:500}
+.btn.fant{background:none;color:var(--tx2)}
+.btn:active{filter:brightness(1.15)}
+.btn[disabled]{opacity:.45}
+.item{display:flex;gap:13px;align-items:flex-start;width:100%;text-align:left;
+  background:var(--s1);border:1px solid var(--line);border-radius:14px;padding:13px 14px}
+.item:active{background:var(--s2)}
+.item .glifo{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;
+  flex:none;font-size:15px;background:rgba(255,255,255,.05)}
+.item h4{font-size:14.5px;font-weight:600;margin-bottom:2px}
+.item .meta{font-size:12px;color:var(--tx3);font-variant-numeric:tabular-nums}
+.chip{display:inline-flex;align-items:center;gap:5px;font-size:10.5px;font-weight:650;
+  padding:3px 9px;border-radius:20px;letter-spacing:.04em;white-space:nowrap}
+.ch-ok{background:rgba(25,158,112,.16);color:var(--pulso-luz)}
+.ch-ojo{background:rgba(224,163,74,.15);color:var(--ojo)}
+.ch-mal{background:rgba(230,103,103,.15);color:var(--mal)}
+.ch-rito{background:rgba(201,133,0,.16);color:var(--rito-luz)}
+.ch-neu{background:var(--s3);color:var(--tx2)}
+.segs{display:flex;gap:5px;background:var(--s2);padding:4px;border-radius:12px}
+.segs button{flex:1;color:var(--tx3);font-weight:600;font-size:12.5px;padding:9px 3px;border-radius:9px}
+.segs button.on{background:var(--s3);color:var(--tx)}
+.barra{height:5px;background:var(--s2);border-radius:3px;overflow:hidden}
+.barra i{display:block;height:100%;border-radius:3px;transition:width .3s}
+.aviso{display:flex;gap:10px;background:rgba(224,163,74,.09);border-left:2px solid var(--ojo);
+  border-radius:0 10px 10px 0;padding:11px 13px;font-size:12.5px;color:#dcc39a;line-height:1.45}
+.tabla{width:100%;border-collapse:collapse;font-size:13px}
+.tabla td{padding:8px 0;border-bottom:1px solid var(--line);color:var(--tx2);
+  font-variant-numeric:tabular-nums}
+.tabla td:last-child{text-align:right;color:var(--tx);font-weight:600}
+.tabla tr:last-child td{border-bottom:0}
+.momento{display:flex;gap:11px;padding:11px 0;border-bottom:1px solid var(--line)}
+.momento:last-child{border-bottom:0}
+.momento .t{font-variant-numeric:tabular-nums;color:var(--tx3);font-size:12px;min-width:40px;padding-top:2px}
+.momento p{font-size:13.5px;color:var(--tx2)} .momento b{color:var(--tx)}
+.gr{width:100%;display:block;height:auto}
+.tar > .gr{margin:2px 0}
+
+/* ------------------------------------------------------ el aro que late -- */
+.aro-caja{display:flex;flex-direction:column;align-items:center;padding:10px 0 4px}
+.aro{width:190px;height:190px;border-radius:50%;position:relative;display:grid;place-items:center}
+.aro::before{content:"";position:absolute;inset:0;border-radius:50%;border:1px solid var(--line2)}
+.aro .halo{position:absolute;inset:14px;border-radius:50%;
+  background:radial-gradient(circle,rgba(25,158,112,.16),transparent 68%)}
+.aro .halo.late{animation:latir var(--ibi,1.2s) ease-in-out infinite}
+@keyframes latir{0%,100%{transform:scale(.94);opacity:.5}18%{transform:scale(1.06);opacity:1}}
+.aro .dentro{position:relative;text-align:center}
+
+/* ------------------------------------------------- la guía que respira --- */
+.guia{width:min(78vw,270px);aspect-ratio:1;border-radius:50%;position:relative;
+  display:grid;place-items:center;margin:0 auto}
+.guia .anillo{position:absolute;inset:0;border-radius:50%;border:1.5px solid var(--aire)}
+.guia .relleno{position:absolute;inset:0;border-radius:50%;
+  background:radial-gradient(circle,rgba(57,135,229,.22),rgba(57,135,229,.03) 70%)}
+.guia .txt{position:relative;text-align:center;z-index:2}
+.guia.reten .anillo{border-color:var(--rito)}
+
+/* el tanque del pulmón: para el zumbido largo es LA pieza */
+.tanque{width:56px;height:190px;background:var(--s2);border:1px solid var(--line);
+  border-radius:14px;position:relative;overflow:hidden;flex:none}
+.tanque i{position:absolute;bottom:0;left:0;right:0;
+  background:linear-gradient(180deg,var(--aire-luz),var(--aire));transition:height .1s linear}
+.tanque .marca{position:absolute;left:6px;font-size:9px;color:var(--tx3);letter-spacing:.08em}
+
+/* ------------------------------------------------------ barra inferior --- */
+.nav{display:flex;border-top:1px solid var(--line);background:var(--s1);
+  position:sticky;bottom:0;z-index:20;padding-bottom:env(safe-area-inset-bottom)}
+.nav button{flex:1;padding:11px 4px 13px;color:var(--tx3);font-size:10px;font-weight:600;
+  letter-spacing:.06em;display:flex;flex-direction:column;align-items:center;gap:4px}
+.nav button .ic{font-size:16px;line-height:1}
+.nav button.on{color:var(--pulso-luz)}
+
+/* ------------------------------------------------------------- estados --- */
+.paso{display:flex;gap:10px;align-items:center;font-size:13.5px;color:var(--tx3);padding:7px 0}
+.paso.hecho{color:var(--tx2)} .paso.hecho .pin{background:var(--pulso)}
+.paso.activo{color:var(--tx)}
+.pin{width:7px;height:7px;border-radius:50%;background:var(--line2);flex:none}
+.paso.activo .pin{background:var(--pulso-luz);animation:latir 1.4s ease-in-out infinite}
+#brindis{position:fixed;left:50%;transform:translateX(-50%);bottom:78px;z-index:60;
+  background:var(--s3);border:1px solid var(--line2);border-radius:22px;padding:10px 16px;
+  font-size:13px;color:var(--tx);opacity:0;transition:opacity .3s;pointer-events:none;
+  max-width:88vw;text-align:center}
+#brindis.on{opacity:1}
+.mono{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;color:var(--tx3);
+  word-break:break-all;line-height:1.5}
+
+@media (prefers-reduced-motion:reduce){
+  .aro .halo.late,.paso.activo .pin{animation:none}
+  .guia .anillo,.guia .relleno,.tanque i{transition:none}
+}
