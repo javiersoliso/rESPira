@@ -3,6 +3,16 @@
 Instrumentación abierta para ver, en tiempo real, cómo se acoplan la respiración
 y el corazón.
 
+> **Summary (English):** rESPira is an open instrument that shows, in real time,
+> how breathing and heart rate couple (respiratory sinus arrhythmia). An ESP32
+> samples a MAX30102 photoplethysmography sensor at 100 Hz and a chest-belt
+> potentiometer, detects beats on-device and streams over WebSocket with its own
+> clock to an offline Android app; Python tools analyse the recordings. In a
+> 144.7-minute overnight session the offline beat detector agreed with the
+> firmware within 0.9 % (6402 vs 6458 beats) and respiration estimated from heart
+> rate matched the belt with a mean absolute error of 2.5 breaths per minute.
+> Not a medical device; validation against a reference-grade amplifier is pending.
+
 Cuando inhalas, tu ritmo cardiaco sube. Cuando exhalas, baja. Eso se llama
 arritmia sinusal respiratoria y es la tesis entera de este proyecto: normalmente
 hay que calcularla a partir de un registro; aquí se ve mientras ocurre.
@@ -66,6 +76,23 @@ Sobre esa base, las herramientas de `analisis/` producen:
 | ![](docs/figuras/f5_poincare.png) | Diagrama de Poincaré, despierto contra dormido |
 | ![](docs/figuras/f6_tacograma.png) | Tacograma: cada punto, un latido |
 
+## Resultados medidos
+
+Una sesión nocturna del autor (9 de agosto de 2026), con el firmware v9:
+
+| Medida | Resultado | Cómo se obtuvo |
+|---|---|---|
+| Duración y volumen | 144,7 min, 887 653 muestras | Registro completo de la aplicación |
+| Latidos detectados | 6402 fuera de línea contra 6458 del firmware (0,9 % de diferencia) | `analisis/analizar_noche.py` contra la detección en el ESP32 |
+| Intervalos entre latidos válidos | 4883, el 76,3 % de la sesión | Mismo script, tras descartar artefactos |
+| Frecuencia respiratoria estimada desde el pulso | Error absoluto medio de 2,5 respiraciones por minuto en 10 ventanas | Arritmia sinusal respiratoria contra el cinturón con potenciómetro |
+| Pulso contra un reloj Samsung | Error absoluto medio de 1,5 latidos por minuto, sesgo de +1,3 | `analisis/cruzar_reloj.py`; solo 4 promedios horarios, porque la exportación del reloj no trae el detalle por minuto |
+
+Son cifras de una persona y una noche: muestran que la cadena funciona y dónde
+falla, no la exactitud del instrumento. La comparación con el reloj es débil
+(cuatro puntos y un reloj de consumo como referencia); la validación seria
+queda pendiente contra un equipo de referencia.
+
 ## Lo que enseñó el análisis
 
 La versión 9 del firmware no trajo funciones nuevas: corrigió seis defectos que
@@ -124,6 +151,12 @@ protoboard, y validación contra un equipo de referencia.
 ## Aviso
 
 No es un dispositivo médico. Ver [AVISO.md](AVISO.md).
+
+## Autor
+
+Javier Solís, Ingeniería Mecatrónica, Universidad ECCI (Bogotá) ·
+javier.solis@ecci.edu.co · [github.com/javiersoliso](https://github.com/javiersoliso).
+Proyecto personal e independiente.
 
 ## Licencia
 
