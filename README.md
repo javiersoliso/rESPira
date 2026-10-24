@@ -158,6 +158,11 @@ Javier Solís, Ingeniería Mecatrónica, Universidad ECCI (Bogotá) ·
 javier.solis@ecci.edu.co · [github.com/javiersoliso](https://github.com/javiersoliso).
 Proyecto personal e independiente.
 
+**Sobre el uso de inteligencia artificial:** parte del código y de la
+documentación se escribió con ayuda de asistentes de inteligencia artificial
+(Claude). El montaje del hardware, las sesiones grabadas, el análisis de los
+defectos y la validación son míos, y revisé todo lo que se publica aquí.
+
 ## Licencia
 
 MIT.
